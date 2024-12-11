@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Salon Cronos</title>
+  <script type="importmap">
+    {
+        "imports": {
+            "three": "./lib/three.module.js",
+            "@mkkellogg/gaussian-splats-3d": "./lib/gaussian-splats-3d.module.js"
+        }
+    }
+  </script>
+  <style>
+
+    body {
+      background-color: #000000;
+      height: 100vh;
+      margin: 0px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <script type="module">
+    import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
+    import * as THREE from 'three';
+  
+    const viewer = new GaussianSplats3D.Viewer({
+      'sharedMemoryForWorkers': false,
+      'initialCameraPosition': [2.10581, -1.18652, 0.01041],
+      'initialCameraLookAt': [0.69222, -1.17634, 0.05112],
+      'integerBasedSort ':false,
+      'cameraUp': [0, -1, 0]
+    });
+    let path = 'data/salon-cronos.ksplat';
+    viewer.addSplatScene(path, {
+      'progressiveLoad': true,
+    })
+    .then(() => {
+        viewer.start();
+    });
+
+  </script>
+</body>
+
+</html>
